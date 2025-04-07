@@ -1,0 +1,48 @@
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  .session-card {
+    transition: transform 0.2s;
+  }
+  .session-card:hover {
+    transform: scale(1.02);
+  }
+  #leaderSection {
+    display: none; /* Hidden unless user is a leader */
+  }
+
+  /* hero section  */
+  .hero-section {
+    position: relative;
+    height: 95vh; /* Full viewport height */
+    background: url('hero.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Overlay for better text contrast */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  }
+
+  .hero-content {
+    position: relative; /* Places text above overlay */
+    z-index: 1;
+    padding: 20px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+  }
