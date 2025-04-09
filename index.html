@@ -19,8 +19,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#" id="loginBtn">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="#" id="registerBtn">Register</a></li>
+          <li class="nav-item text-primary text-white hover-text-info"  ><a class="nav-link" href="#" id="loginBtn" style="font-size: large; color: #f7ffff;">Login</a></li>
+          <li class="nav-item text-white hover-text-info" style="font-size: large;"><a class="nav-link" href="#" id="registerBtn" style="font-size: large; color: #f7ffff;">Register</a></li>
           <li class="nav-item d-none" id="logoutLi"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
         </ul>
       </div>
@@ -41,6 +41,47 @@
     <div class="row" id="sessionsContainer">
       <!-- Sessions load here via JavaScript -->
     </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-success" id="createSessionBtn">Create Session</button>
+    </div>
+    
+    <!-- Modal for Create Session -->
+    <div class="modal fade" id="createSessionModal" tabindex="-1" aria-labelledby="createSessionModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form id="createSessionForm" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createSessionModalLabel">Create New Session</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-control" name="date" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Instructor</label>
+              <input type="text" class="form-control" name="instructor" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Difficulty</label>
+              <select class="form-select bg-white" name="difficulty" required>
+                <option value="Short">Short</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Session</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
   </section>
 
   <!-- How It Works Section -->
@@ -115,7 +156,7 @@
             <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Your Email" required>
           </div>
           <div class="mb-3">
-            <select class="form-select bg-dark text-white border-secondary">
+            <select class="form-select bg-white border-secondary">
               <option selected disabled>Select Subject</option>
               <option>Session Booking</option>
               <option>Become an Instructor</option>
@@ -151,7 +192,7 @@
           <div class="mb-3">
             <input type="password" class="form-control" placeholder="Password" required>
           </div>
-          <button type="submit" class="btn btn-primary w-100">Login</button>
+          <button type="submit" class="btn btn-primary w-100">Submit to Login</button>
         </form>
       </div>
     </div>
@@ -173,6 +214,13 @@
           </div>
           <div class="mb-3">
             <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <select class="form-select bg-white border-secondary">
+              <option selected disabled>Select User Type</option>
+              <option>Normal User</option>
+              <option>leader</option>
+            </select>
           </div>
           <div class="mb-3">
             <input type="password" class="form-control" placeholder="Password" required>
@@ -198,7 +246,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-center text-md-start">
-        <p class="mb-0">© 2025 ActiveCommunities. All rights reserved.</p>
+        <p class="mb-0">© 2025 ActiveCommunities. <span class="" style="font-weight: 600; color: rgb(62, 62, 62);">Developed by Malaika</span> </p>
       </div>
       <div class="col-md-6 text-center text-md-end">
         <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
@@ -228,7 +276,7 @@
   </style>
 
   <!-- Leader-Only Button (Hidden by Default) -->
-  <div class="container text-center mb-5 d-none" id="leaderSection">
+  <div class="container text-center mb-5" id="leaderSection">
     <button class="btn btn-success" id="addSessionBtn">Add New Session</button>
   </div>
 

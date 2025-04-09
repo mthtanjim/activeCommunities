@@ -4,11 +4,40 @@ const sessions = [
     { id: 2, title: "Intermediate Ride", date: "2025-05-15", instructor: "Jane Smith", difficulty: "Medium" },
     { id: 3, title: "Advanced Trail Adventure", date: "2025-05-20", instructor: "Chris Evans", difficulty: "High" },
     { id: 4, title: "Sunset City Cruise", date: "2025-05-25", instructor: "Emily Johnson", difficulty: "Short" },
-    { id: 5, title: "Weekend Mountain Ride", date: "2025-05-30", instructor: "Liam Brown", difficulty: "Medium" },
-    { id: 6, title: "Early Bird Challenge", date: "2025-06-05", instructor: "Olivia Davis", difficulty: "High" }
-  ];
+    { id: 5, title: "Weekend Mountain Ride", date: "2025-05-30", instructor: "Liam Brown", difficulty: "Medium" }  ];
   
-  
+  // Create Session Modal
+const createSessionModal = new bootstrap.Modal('#createSessionModal');
+
+// Open Modal
+document.getElementById('createSessionBtn').addEventListener('click', () => {
+  if (!currentUser) {
+    alert("Please login to create a session.");
+    return;
+  }
+  createSessionModal.show();
+});
+
+// Handle Create Session Form
+document.getElementById('createSessionForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const newSession = {
+    id: sessions.length + 1,
+    title: formData.get('title'),
+    date: formData.get('date'),
+    instructor: formData.get('instructor'),
+    difficulty: formData.get('difficulty'),
+  };
+
+  sessions.push(newSession);
+  renderSessions();
+  createSessionModal.hide();
+  e.target.reset(); // clear form
+  alert("Session added successfully!");
+});
+
   let currentUser = null;
   
   // DOM Loaded
@@ -48,39 +77,39 @@ const sessions = [
   // Simulate Login (Replace with Firebase Auth later)
   function setupLoginButtons() {
     document.getElementById('loginBtn').addEventListener('click', () => {
-      currentUser = { role: 'user' }; // Mock user
-      toggleAuthUI();
+      loginModal.show(); // just show modal
     });
   
     document.getElementById('logoutBtn').addEventListener('click', () => {
       currentUser = null;
-      toggleAuthUI();
+      updateAuthUI(); // use unified function
+      alert('Logged out');
     });
   }
   
-  // Toggle UI based on login state
   function toggleAuthUI() {
     const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
+    const registerBtn = document.getElementById('registerBtn');
     const logoutLi = document.getElementById('logoutLi');
     const leaderSection = document.getElementById('leaderSection');
   
     if (currentUser) {
       loginBtn.classList.add('d-none');
+      registerBtn.classList.add('d-none'); // HIDE register
       logoutLi.classList.remove('d-none');
       if (currentUser.role === 'leader') leaderSection.classList.remove('d-none');
     } else {
       loginBtn.classList.remove('d-none');
+      registerBtn.classList.remove('d-none'); // SHOW register
       logoutLi.classList.add('d-none');
       leaderSection.classList.add('d-none');
     }
   }
-  
+
   // Book a Session (Mock Function)
   function bookSession(sessionId) {
     alert(`Booked session #${sessionId}!`);
   }
-
 
 // Login Form Handler
 document.getElementById('loginForm')?.addEventListener('submit', (e) => {
@@ -89,7 +118,7 @@ document.getElementById('loginForm')?.addEventListener('submit', (e) => {
   
   currentUser = { 
     email: email,
-    role: 'user' // Default role
+    role: 'leader' // Default role
   };
   
   updateAuthUI();
@@ -106,7 +135,7 @@ document.getElementById('registerForm')?.addEventListener('submit', (e) => {
   currentUser = {
     email: email,
     name: name,
-    role: 'user'
+    role: 'leader'
   };
   
   updateAuthUI();
@@ -119,24 +148,39 @@ function updateAuthUI() {
   const loginBtn = document.getElementById('loginBtn');
   const registerBtn = document.getElementById('registerBtn');
   const logoutBtn = document.getElementById('logoutBtn');
-  
+  const logoutLi = document.getElementById('logoutLi');
+  const leaderSection = document.getElementById('leaderSection');
+
   if (currentUser) {
     loginBtn.classList.add('d-none');
     registerBtn.classList.add('d-none');
-    logoutBtn.classList.remove('d-none');
+    logoutBtn?.classList.remove('d-none');
+    logoutLi?.classList.remove('d-none');
+    if (currentUser.role === 'leader') {
+      leaderSection?.classList.remove('d-none');
+    }
   } else {
     loginBtn.classList.remove('d-none');
     registerBtn.classList.remove('d-none');
-    logoutBtn.classList.add('d-none');
+    logoutBtn?.classList.add('d-none');
+    logoutLi?.classList.add('d-none');
+    leaderSection?.classList.add('d-none');
   }
 }
 
-// Logout Handler
-document.getElementById('logoutBtn')?.addEventListener('click', () => {
-  currentUser = null;
-  updateAuthUI();
-  alert('Logged out');
-});
+document.getElementById('loginBtn').addEventListener('click', () => loginModal.show());
+function setupLoginButtons() {
+  document.getElementById('loginBtn').addEventListener('click', () => {
+    loginModal.show(); // just open modal, no auth yet
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    currentUser = null;
+    toggleAuthUI();
+    alert('Logged out');
+  });
+}
+document.getElementById('loginBtn').addEventListener('click', () => loginModal.show());
 
 // Initialize modals
 const loginModal = new bootstrap.Modal('#loginModal');
@@ -144,3 +188,4 @@ const registerModal = new bootstrap.Modal('#registerModal');
 
 document.getElementById('loginBtn').addEventListener('click', () => loginModal.show());
 document.getElementById('registerBtn').addEventListener('click', () => registerModal.show());
+
