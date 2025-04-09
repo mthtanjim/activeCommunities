@@ -1,6 +1,10 @@
 body {
     font-family: 'Arial', sans-serif;
   }
+  input.form-control {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
   .session-card {
     transition: transform 0.2s;
   }

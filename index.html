@@ -94,6 +94,127 @@
       </div>
     </div>
   </section>
+
+  <!-- Contact Us Section -->
+<section class="bg-dark text-white py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mb-4">Contact Us</h2>
+        <p class="lead mb-5">Have questions? Get in touch with our team.</p>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <form id="contactForm">
+          <div class="mb-3">
+            <input type="text" class="form-control bg-dark text-white border-secondary" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <select class="form-select bg-dark text-white border-secondary">
+              <option selected disabled>Select Subject</option>
+              <option>Session Booking</option>
+              <option>Become an Instructor</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control bg-dark text-white border-secondary" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Full Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional: Add smooth form focus effect -->
+<style>
+  .form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    background-color: #212529;
+  }
+</style>
+
+  <!-- Footer Section -->
+<footer class="bg-light py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="mb-0">© 2025 ActiveCommunities. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+        <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+        <a href="#" class="text-decoration-none">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Optional: Add a top border -->
+<style>
+  footer {
+    border-top: 1px solid rgba(45, 90, 238, 0.516);
+  }
+</style>
   
   <!-- Add this CSS for smooth hover effects -->
   <style>

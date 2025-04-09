@@ -22,7 +22,7 @@ const sessions = [
     const container = document.getElementById('sessionsContainer');
     container.innerHTML = sessions.map(session => `
       <div class="col-md-4 mb-4">
-        <div class="card session-card">
+        <div class="card session-card" style="background-color:rgba(215, 223, 255, 0.25);">
           <div class="card-body">
             <h5 class="card-title">${session.title}</h5>
             <p class="card-text">
@@ -80,3 +80,67 @@ const sessions = [
   function bookSession(sessionId) {
     alert(`Booked session #${sessionId}!`);
   }
+
+
+// Login Form Handler
+document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  
+  currentUser = { 
+    email: email,
+    role: 'user' // Default role
+  };
+  
+  updateAuthUI();
+  bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+  alert(`Logged in as ${email}`);
+});
+
+// Register Form Handler
+document.getElementById('registerForm')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  const name = e.target.querySelector('input[type="text"]').value;
+  
+  currentUser = {
+    email: email,
+    name: name,
+    role: 'user'
+  };
+  
+  updateAuthUI();
+  bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+  alert(`Registered and logged in as ${name}`);
+});
+
+// Update UI based on login state
+function updateAuthUI() {
+  const loginBtn = document.getElementById('loginBtn');
+  const registerBtn = document.getElementById('registerBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  
+  if (currentUser) {
+    loginBtn.classList.add('d-none');
+    registerBtn.classList.add('d-none');
+    logoutBtn.classList.remove('d-none');
+  } else {
+    loginBtn.classList.remove('d-none');
+    registerBtn.classList.remove('d-none');
+    logoutBtn.classList.add('d-none');
+  }
+}
+
+// Logout Handler
+document.getElementById('logoutBtn')?.addEventListener('click', () => {
+  currentUser = null;
+  updateAuthUI();
+  alert('Logged out');
+});
+
+// Initialize modals
+const loginModal = new bootstrap.Modal('#loginModal');
+const registerModal = new bootstrap.Modal('#registerModal');
+
+document.getElementById('loginBtn').addEventListener('click', () => loginModal.show());
+document.getElementById('registerBtn').addEventListener('click', () => registerModal.show());
